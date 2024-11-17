@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>br.dev.webit.jaxws-jaxb</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>java2xsd</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- JUNIT 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- JAXB -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>schemagen</id>
+                        <goals>
+                            <goal>schemagen</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformSchemas>
+                        <transformSchema>
+                            <uri>http://java2xsd.webit.dev.br/envelope</uri>
+                            <toFile>envelope.xsd</toFile>
+                        </transformSchema>
+                        <transformSchema>
+                            <uri>http://java2xsd.webit.dev.br/person</uri>
+                            <toFile>person.xsd</toFile>
+                        </transformSchema>
+                    </transformSchemas>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
